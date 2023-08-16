@@ -1,0 +1,65 @@
+create database onlinemovie;
+use onlinemovie;
+ 
+ create table admin (
+       username varchar(255) not null,
+        password varchar(255),
+        primary key (username)
+    ) engine=InnoDB
+ 
+    
+    create table cart (
+       id bigint not null,
+        price float not null,
+        quantity integer not null,
+        product_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+ 
+    
+    create table customer (
+       email varchar(255) not null,
+        address varchar(255),
+        contact varchar(255),
+        name varchar(255),
+        password varchar(255),
+        primary key (email)
+    ) engine=InnoDB
+ 
+    
+    create table product (
+       id bigint not null,
+        actual_price float not null,
+        avail varchar(255),
+        category varchar(255),
+        des varchar(255),
+        discount float not null,
+        durations varchar(255),
+        imagepath varchar(255),
+        name varchar(255),
+        price float not null,
+        primary key (id)
+    ) engine=InnoDB
+
+    
+    create table purchase (
+       id bigint not null,
+        dop date,
+        productname varchar(255),
+        quantity integer not null,
+        totalcost float not null,
+        transactionid varchar(255),
+        customer_email varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+
+    alter table cart 
+       add constraint FK3d704slv66tw6x5hmbm6p2x3u 
+       foreign key (product_id) 
+       references product (id)
+ 
+    
+    alter table purchase 
+       add constraint FKo7gdhk6inpwo1ktafs0q3wy2a 
+       foreign key (customer_email) 
+       references customer (email)
